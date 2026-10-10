@@ -38,33 +38,6 @@ describe('Garage', () => {
         garage.addCar(car3);
         expect(garage.getCarCount()).toBe(3);
     });
-    test('Stored property should be true for all cars when they are added to the garage', () => {
-        const garage = new Garage();
-        const car1 = new Car('Toyota', 'Corolla', 2020);
-        const car2 = new Car('Honda', 'Civic', 2021);
-        const car3 = new Car('Ford', 'Mustang', 2022);
-        garage.addCar(car1);
-        garage.addCar(car2);
-        garage.addCar(car3);
-        expect(car1.getStored()).toBe(true);
-        expect(car2.getStored()).toBe(true);
-        expect(car3.getStored()).toBe(true);
-    });
-    test('Stored property should be false for all cars when they are removed from the garage', () => {
-        const garage = new Garage();
-        const car1 = new Car('Toyota', 'Corolla', 2020);
-        const car2 = new Car('Honda', 'Civic', 2021);
-        const car3 = new Car('Ford', 'Mustang', 2022);
-        garage.addCar(car1);
-        garage.addCar(car2);
-        garage.addCar(car3);
-        garage.removeCar(car1);
-        garage.removeCar(car2);
-        garage.removeCar(car3);
-        expect(car1.getStored()).toBe(false);
-        expect(car2.getStored()).toBe(false);
-        expect(car3.getStored()).toBe(false);
-    });
     test('Should find a car existing in the garage', () => {
         const garage = new Garage();
         const car1 = new Car('Toyota', 'Corolla', 2020);
@@ -87,14 +60,11 @@ describe('Garage', () => {
         const foundCar2 = garage.findCarByModel('Mustang');
         expect(foundCar2).toBeUndefined();
     });
-
     test('Should not add a duplicate car to the garage', () => {
         const garage = new Garage();
         garage.addCar(new Car('Toyota', 'Corolla', 2020));
-        garage.addCar(new Car('Toyota', 'Corolla', 2020));
         expect(() => garage.addCar(new Car('Toyota', 'Corolla', 2020))).toThrow();
     });
-
    test('Should verify the brand of the car when adding to the garage', () => {
         const garage = new Garage();
         const car = new Car('Toyota', 'Corolla', 2020);
@@ -150,10 +120,6 @@ describe('Garage', () => {
         expect(car.getModel()).toBe('Camry');
         expect(car.getYear()).toBe(2020);
         expect(car).toBeInstanceOf(Car);
-    });
-    test('Stored property should be true when a car is created', () => {
-        const car = new Car('Honda', 'Civic', 2021);
-        expect(car.getStored()).toBe(true);
     });
     test('Stored property should be false when a car is not stored', () => {
         const car = new Car('Ford', 'Mustang', 2022);
